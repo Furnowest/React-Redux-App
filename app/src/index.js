@@ -1,12 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
+import ReduxThunk from 'redux-thunk' 
 import App from './App';
 import {Provider} from 'react-redux';
-import {createStore} from 'redux';
-import {titleReducer} from './reducers'
+import {createStore, applyMiddleware} from 'redux';
+import {animalsReducer} from './reducers';
 
-const store =createStore(titleReducer);
+const logger = ({ getState }) => next => action => {
+    console.log("Dispatching:", action);
+    next(action);
+  };
 
+const store = createStore(animalsReducer, applyMiddleware(logger,ReduxThunk));
 const rootElement = document.getElementById('root');
-ReactDOM.render(<Provider store={store}><App /></Provider>, rootElement)
+ReactDOM.render(
+<Provider store={store}>
+    <App />
+    </Provider>, rootElement)

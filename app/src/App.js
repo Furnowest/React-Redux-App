@@ -1,14 +1,15 @@
 
 import React from "react";
-import "./index.css";
-import Title from "./components/Title";
+import "./App.css";
 import Animals from "./components/Animals";
+import Dogs from "./components/Dogs";
+
 
 function App() {
   return (
     <div className="App">
-      <Title />
       <Animals />
+      <Dogs />
     </div>
   );
 }
